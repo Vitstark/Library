@@ -24,7 +24,7 @@ public class PersonDAOImpl implements PersonDAO {
 
     }
 
-    public Optional<Book> findByID(Long aLong) {
+    public Optional<Person> findByID(Long aLong) {
         return null;
     }
 
