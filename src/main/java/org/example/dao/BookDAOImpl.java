@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,15 +30,23 @@ public class BookDAOImpl implements BookDAO {
             .id(row.getLong("id"))
             .name(row.getString("name"))
             .author(row.getString("author"))
-            .date(row.getString("year_of_create"))
+            .date(row.getInt("year_of_create"))
             .personId(row.getLong("person_id"))
             .build();
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public BookDAOImpl(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     public List<Book> findBooksOfReaderOrderByName(Person person) {
         return jdbcTemplate.query(SQL_FIND_BOOKS_OF_READER, bookMapper, person.getId());
+    }
+
+    public List<Book> findAll() {
+        return jdbcTemplate.query("SELECT * FROM book", bookMapper);
     }
 
     public void save(Book book) {
@@ -49,7 +58,7 @@ public class BookDAOImpl implements BookDAO {
 
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 
-        Long id = insert.withTableName("student")
+        Long id = insert.withTableName("book")
                 .usingGeneratedKeyColumns("id")
                 .executeAndReturnKey(new MapSqlParameterSource(paramsAsMap))
                 .longValue();
@@ -59,7 +68,7 @@ public class BookDAOImpl implements BookDAO {
 
     public Optional<Book> findByID(Long id) {
         try {
-            return Optional.of(jdbcTemplate.queryForObject(SQL_FIND_BOOK_BY_ID, bookMapper));
+            return Optional.of(jdbcTemplate.queryForObject(SQL_FIND_BOOK_BY_ID, bookMapper, id));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
