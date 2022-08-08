@@ -1,11 +1,13 @@
 package dao;
 
+import models.Book;
 import models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PersonDAOImpl implements PersonDAO {
 
@@ -22,8 +24,8 @@ public class PersonDAOImpl implements PersonDAO {
 
     }
 
-    public void findByID(Long aLong) {
-
+    public Optional<Book> findByID(Long aLong) {
+        return null;
     }
 
     public void update(Person entity) {

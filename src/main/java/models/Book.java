@@ -27,4 +27,6 @@ public class Book {
     @NotEmpty(message = "Date should not be empty")
     @Pattern(regexp = "\\d{4}.\\d{2}.\\d{2}", message = "Date should be like YYYY.MM.DD")
     private String date;
+
+    private Long personId;
 }
