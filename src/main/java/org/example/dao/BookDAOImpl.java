@@ -1,7 +1,7 @@
-package dao;
+package org.example.dao;
 
-import models.Book;
-import models.Person;
+import org.example.models.Book;
+import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,6 +1,6 @@
 package org.example.configurations;
 
-import dao.PersonDAOImpl;
+import org.example.dao.PersonDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;

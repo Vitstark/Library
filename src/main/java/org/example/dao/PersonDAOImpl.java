@@ -1,7 +1,6 @@
-package dao;
+package org.example.dao;
 
-import models.Book;
-import models.Person;
+import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,7 +19,7 @@ public class PersonDAOImpl implements PersonDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void save(Person entity) {
+    public void save(Person person) {
 
     }
 

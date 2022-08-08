@@ -1,6 +1,4 @@
-package dao;
-
-import models.Book;
+package org.example.dao;
 
 import java.util.Optional;
 
