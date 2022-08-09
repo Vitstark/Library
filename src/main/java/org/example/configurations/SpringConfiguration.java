@@ -61,7 +61,7 @@ public class SpringConfiguration implements WebMvcConfigurer {
 
     @Bean
     public PersonDAOImpl personDAO() {
-        return new PersonDAOImpl();
+        return new PersonDAOImpl(dataSource());
     }
 
     @Override
