@@ -4,8 +4,6 @@ import org.example.configurations.TestConfiguration;
 import org.example.models.Book;
 import org.example.models.Person;
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class BookDaoTest {
+public class BookDAOImplTest {
     private static BookDAO bookDAO;
     private static JdbcTemplate jdbcTemplate;
     private static Book cleanCode;
@@ -90,7 +88,6 @@ public class BookDaoTest {
 
     @Test
     public void bookShouldBeDeleted() {
-        bookDAO.save(book);
         bookDAO.delete(book.getId());
 
         Assertions.assertEquals(Optional.empty(), bookDAO.findByID(book.getId()));
@@ -101,7 +98,6 @@ public class BookDaoTest {
         book.setName("kooBtseT");
         book.setAuthor("nitraM boB");
         book.setDate(20002);
-        book.setPersonId(2l);
         bookDAO.update(book);
 
         Book updatedBook = bookDAO.findByID(book.getId()).get();
@@ -109,11 +105,16 @@ public class BookDaoTest {
         Assertions.assertEquals(book.getName(), updatedBook.getName());
         Assertions.assertEquals(book.getAuthor(), updatedBook.getAuthor());
         Assertions.assertEquals(book.getDate(), updatedBook.getDate());
-        Assertions.assertEquals(book.getPersonId(), updatedBook.getPersonId());
+        Assertions.assertEquals(0, updatedBook.getPersonId());
     }
 
     @AfterEach
     public void deleteBook() {
-        jdbcTemplate.update("delete from book where id = " + book.getId());
+        jdbcTemplate.update("delete from book where id = ?", book.getId());
+    }
+
+    @AfterAll
+    public static void deleteTestBooks() {
+        jdbcTemplate.update("delete from book where name = ?", "TestBook");
     }
 }
