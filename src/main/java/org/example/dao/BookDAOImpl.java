@@ -55,6 +55,7 @@ public class BookDAOImpl implements BookDAO {
         paramsAsMap.put("name", book.getName());
         paramsAsMap.put("author", book.getAuthor());
         paramsAsMap.put("year_of_create", book.getDate());
+        paramsAsMap.put("person_id", book.getPersonId());
 
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 
