@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
@@ -28,4 +27,8 @@ public class Book {
     private Integer date;
 
     private Long personId;
+
+    public String show() {
+        return name + ", " + author + ", " + date;
+    }
 }

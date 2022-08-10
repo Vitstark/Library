@@ -21,7 +21,6 @@ public class Person {
     @Size(min = 2, max = 40, message = "Age should be between 2 and 40 character")
     private String name;
 
-    @Pattern(regexp = "\\d{4}.\\d{2}.\\d{2}", message = "Date should be like YYYY.MM.DD")
     private Integer yearOfBirth;
 
     public String show() {

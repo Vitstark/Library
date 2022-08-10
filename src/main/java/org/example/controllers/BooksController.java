@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.example.dao.BookDAO;
+import org.example.dao.BookDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/books")
 public class BooksController {
     @Autowired
-    private BookDAO bookDAO;
+    private BookDAOImpl bookDAO;
 
     @GetMapping()
     public String books(Model model) {
-        model.addAttribute("books", bookDAO.findAllOrderedByName);
+        model.addAttribute("books", bookDAO.findAll());
         return "books/books";
     }
 }
