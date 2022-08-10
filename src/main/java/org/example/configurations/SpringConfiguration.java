@@ -17,16 +17,12 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan("org.example")
 @EnableWebMvc
-@PropertySource("classpath:db.properties")
 public class SpringConfiguration implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
-    private final Environment environment;
-
     @Autowired
-    public SpringConfiguration(ApplicationContext applicationContext, Environment environment) {
+    public SpringConfiguration(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
-        this.environment = environment;
     }
 
     @Bean
@@ -45,23 +41,6 @@ public class SpringConfiguration implements WebMvcConfigurer {
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
-    }
-
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        dataSource.setDriverClassName(environment.getProperty("driver"));
-        dataSource.setUrl(environment.getProperty("url"));
-        dataSource.setUsername(environment.getProperty("name"));
-        dataSource.setPassword(environment.getProperty("password"));
-
-        return dataSource;
-    }
-
-    @Bean
-    public PersonDAOImpl personDAO() {
-        return new PersonDAOImpl(dataSource());
     }
 
     @Override

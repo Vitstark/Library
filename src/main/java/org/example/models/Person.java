@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -23,5 +22,9 @@ public class Person {
     private String name;
 
     @Pattern(regexp = "\\d{4}.\\d{2}.\\d{2}", message = "Date should be like YYYY.MM.DD")
-    private String dateOfBirth;
+    private Integer yearOfBirth;
+
+    public String show() {
+        return name + ", " + yearOfBirth;
+    }
 }

@@ -19,11 +19,11 @@ public class PersonDAOImpl implements PersonDAO {
     private static final String SQL_FIND_PERSON_BY_ID = "SELECT * FROM person WHERE id = ?";
     private static final String SQL_FIND_SORTED_PEOPLE = "SELECT * FROM person ORDER BY name";
     private static final String SQL_DELETE_PERSON_BY_ID = "DELETE FROM person WHERE id = ?";
-    private static final String SQL_UPDATE_PERSON = "UPDATE person SET name = ?, date_of_birth = ? WHERE id = ?";
+    private static final String SQL_UPDATE_PERSON = "UPDATE person SET name = ?, year_of_birth = ? WHERE id = ?";
     private static final RowMapper<Person> personMapper = (rs, rowNum) ->  Person.builder()
             .id(rs.getLong("id"))
             .name(rs.getString("name"))
-            .dateOfBirth(rs.getString("date_of_birth"))
+            .yearOfBirth(rs.getInt("year_of_birth"))
             .build();
 
 
@@ -38,7 +38,7 @@ public class PersonDAOImpl implements PersonDAO {
         Map<String, Object> params = new HashMap<>();
 
         params.put("name", person.getName());
-        params.put("date_of_birth", person.getDateOfBirth());
+        params.put("year_of_birth", person.getYearOfBirth());
 
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 
@@ -59,7 +59,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     public void update(Person person) {
-        int affectedRows = jdbcTemplate.update(SQL_UPDATE_PERSON, person.getName(), person.getDateOfBirth(), person.getId());
+        int affectedRows = jdbcTemplate.update(SQL_UPDATE_PERSON, person.getName(), person.getYearOfBirth(), person.getId());
 
         if (affectedRows < 1) {
             throw new RuntimeException("person with id = " + person.getId() + " can`t be updated");

@@ -34,13 +34,13 @@ public class PersonDAOImplTest {
         andrew = Person.builder()
                 .id(1l)
                 .name("Андреев Андрей Андреич")
-                .dateOfBirth("2000.01.01")
+                .yearOfBirth(2000)
                 .build();
 
         boris = Person.builder()
                 .id(2l)
                 .name("Борисов Борис Борисович")
-                .dateOfBirth("2003.02.12")
+                .yearOfBirth(2003)
                 .build();
     }
 
@@ -48,13 +48,13 @@ public class PersonDAOImplTest {
     public void initPerson() {
         person = Person.builder()
                 .name("TestPerson")
-                .dateOfBirth("6666.66.66")
+                .yearOfBirth(666)
                 .build();
 
         Map<String, Object> params = new HashMap<>();
 
         params.put("name", person.getName());
-        params.put("date_of_birth", person.getDateOfBirth());
+        params.put("year_of_birth", person.getYearOfBirth());
 
         SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 
@@ -84,7 +84,7 @@ public class PersonDAOImplTest {
     public void personShouldBeSaved() {
         Person testPerson = Person.builder()
                 .name("TestPerson")
-                .dateOfBirth("666.66.66")
+                .yearOfBirth(6666)
                 .build();
 
         personDAO.save(testPerson);
@@ -105,7 +105,7 @@ public class PersonDAOImplTest {
     @Test
     public void personShouldBeUpdated() {
         person.setName("BOB");
-        person.setDateOfBirth("12.01.22");
+        person.setYearOfBirth(66666);
 
         personDAO.update(person);
 
@@ -113,7 +113,7 @@ public class PersonDAOImplTest {
 
         assertEquals(person.getId(), updatedPerson.getId());
         assertEquals(person.getName(), updatedPerson.getName());
-        assertEquals(person.getDateOfBirth(), updatedPerson.getDateOfBirth());
+        assertEquals(person.getYearOfBirth(), updatedPerson.getYearOfBirth());
     }
 
     @AfterEach
