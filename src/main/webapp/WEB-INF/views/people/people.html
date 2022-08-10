@@ -10,5 +10,11 @@
     <a th:href="@{/people/{id}(id=${person.getId()})}"th:text="${person.show()}">user</a>
 </div>
 
+<hr>
+
+<form action="/people/new">
+    <input type="submit" value="Добавить человека">
+</form>
+
 </body>
 </html>
