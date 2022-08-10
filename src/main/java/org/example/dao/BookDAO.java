@@ -1,7 +1,7 @@
-package dao;
+package org.example.dao;
 
-import models.Book;
-import models.Person;
+import org.example.models.Book;
+import org.example.models.Person;
 
 import java.util.List;
 

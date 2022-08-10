@@ -1,8 +1,10 @@
-package dao;
+package org.example.dao;
+
+import java.util.Optional;
 
 public interface CRUD<ID,T> {
     void save(T entity);
-    void findByID(ID id);
+    Optional<T> findByID(ID id);
     void update(T entity);
     void delete(ID id);
 }
