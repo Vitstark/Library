@@ -6,7 +6,8 @@
 </head>
 <body>
 <div th:each="book : ${books}">
-  <a th:href="@{/books/{id}(id=${book.getId()})}"th:text="${book.show()}">book</a>
+  <a th:href="@{/books/{id}(id=${book.getId()})}"
+     th:text="${book.name} + ', ' + ${book.author} + ', ' + ${book.date}">book</a>
 </div>
 
 <hr>
@@ -14,5 +15,6 @@
 <form action="/books/new">
   <input type="submit" value="Добавить книгу">
 </form>
+
 </body>
 </html>

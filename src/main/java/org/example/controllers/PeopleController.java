@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import org.example.dao.BookDAO;
 import org.example.dao.PersonDAO;
+import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,9 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String person(@PathVariable Long id, Model model) {
-        model.addAttribute("person", personDAO.findByID(id));
+        Person person = personDAO.findByID(id).get();
+        model.addAttribute("person", person);
+        model.addAttribute("booksOfPerson", bookDAO.findBooksOfReaderOrderByName(person));
         return "people/person";
     }
 }

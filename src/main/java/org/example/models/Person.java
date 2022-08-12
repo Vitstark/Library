@@ -23,7 +23,4 @@ public class Person {
 
     private Integer yearOfBirth;
 
-    public String show() {
-        return name + ", " + yearOfBirth;
-    }
 }

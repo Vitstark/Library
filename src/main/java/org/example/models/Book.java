@@ -27,8 +27,4 @@ public class Book {
     private Integer date;
 
     private Long personId;
-
-    public String show() {
-        return name + ", " + author + ", " + date;
-    }
 }
