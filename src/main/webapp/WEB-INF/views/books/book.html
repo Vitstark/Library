@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/books">Назад</a>
+<form action="/books">
+    <input type="submit" value="Назад">
+</form>
 
 <p th:text="${book.name} + ', ' + ${book.author} + ', ' + ${book.date}">book</p>
 
