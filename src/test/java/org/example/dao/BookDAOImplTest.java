@@ -72,7 +72,7 @@ public class BookDAOImplTest {
     @Test
     public void findBooksOfReader() {
         Book [] books = new Book[] {cleanCode};
-        Person person = new Person(1l, "Vasya", "01.01.2001");
+        Person person = new Person(1l, "Vasya", 2000);
 
         Assertions.assertArrayEquals(books, bookDAO.findBooksOfReaderOrderByName(person).toArray());
     }

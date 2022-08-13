@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
@@ -18,10 +15,13 @@ public class Person {
 
     private Long id;
 
-    @NotEmpty(message = "Email should not be empty")
-    @Size(min = 2, max = 40, message = "Age should be between 2 and 40 character")
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min = 2, max = 100, message = "Имя должно иметь от 2 до 100 символов")
     private String name;
 
-    @Pattern(regexp = "\\d{4}.\\d{2}.\\d{2}", message = "Date should be like YYYY.MM.DD")
-    private String dateOfBirth;
+    @NotNull(message = "Год рождения не должен быть пустой")
+    @Max(value = 2022, message = "Год рождения должен быть в промежутке от 1900 до 2022")
+    @Min(value = 1900, message = "Год рождения должен быть в промежутке от 1900 до 2022")
+    private Integer yearOfBirth;
+
 }
