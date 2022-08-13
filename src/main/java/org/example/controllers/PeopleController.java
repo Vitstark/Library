@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
-
     @Autowired
     private PersonDAO personDAO;
     @Autowired
@@ -37,7 +36,7 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String addPerson(@ModelAttribute("person") Person person) {
+    public String savePerson(@ModelAttribute("person") Person person) {
         personDAO.save(person);
         return "redirect:/people";
     }

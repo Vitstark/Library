@@ -52,4 +52,33 @@ public class BooksController {
         bookDAO.update(book);
         return "redirect:/books/{id}";
     }
+
+    @GetMapping("/new")
+    public String newBook(@ModelAttribute("book") Book book) {
+        return "books/new";
+    }
+
+    @PostMapping()
+    public String saveBook(@ModelAttribute("book") Book book) {
+        bookDAO.save(book);
+        return "redirect:/books";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editBook(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("book", bookDAO.findByID(id).get());
+        return "books/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateBook(@ModelAttribute("book") Book book) {
+        bookDAO.update(book);
+        return "redirect:/books/{id}";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable("id") Long id) {
+        bookDAO.delete(id);
+        return "redirect:/books";
+    }
 }
