@@ -5,8 +5,9 @@
     <title>Person</title>
 </head>
 <body>
-<a href="/people">Назад</a>
-
+<form action="/people">
+    <input type="submit" value="Назад">
+</form>
 <p th:text="${person.name} + ', ' + ${person.yearOfBirth}">
 
 <p th:if="${booksOfPerson.isEmpty()}">Человек пока не взял ни одной книги</p>

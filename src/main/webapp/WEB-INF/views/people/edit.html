@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<a th:href="@{/books/{id}(id=${person.id})}">Назад</a>
+<form th:action="@{/people/{id}(id=${person.id})}">
+    <input type="submit" value="Назад">
+</form>
 
 <form th:method="PATCH" th:action="@{/people/{id}(id=${person.id})}" th:object="${person}">
     <label for="name">Поменяйте ФИО: </label>
